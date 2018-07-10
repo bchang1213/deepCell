@@ -4,6 +4,16 @@ import "../../node_modules/dropzone/dist/min/dropzone.min.css";
 import DropzoneComponent from 'react-dropzone-component';
 
 export default class UploadArea extends Component{
+	constructor() {
+		super()
+		this.state = { files: [] }
+	  }
+	
+	onDrop(files) {
+		this.setState({
+			files
+		});
+	}
 
 	render(){
 		var componentConfig = {
@@ -17,7 +27,7 @@ export default class UploadArea extends Component{
 		}
 		return(
 			<div id="content">
-				<DropzoneComponent config={componentConfig} djsConfig={djsConfig} />
+				<DropzoneComponent config={componentConfig} djsConfig={djsConfig} onDrop={this.onDrop.bind(this)} />
 			</div>
 		);
 	}
